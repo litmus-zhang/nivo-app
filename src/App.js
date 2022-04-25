@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Calendar from './calendar';
+import Stream from './stream';
+import {BrowserRouter, Route, NavLink} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <BrowserRouter>
+      <nav>
+        <NavLink
+          exact activeStyle={{ textDecoration: 'underline' }}
+          to="/"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Stream
+        </NavLink>
+        <NavLink
+          exact activeStyle={{ textDecoration: 'underline' }}
+          to="/calendar"
+        >
+          Calendar
+        </NavLink>
+      </nav>
+      <Switch>
+        <Route exact path="/" component={Stream} />
+        <Route exact path="/calendar" component={Calendar} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
